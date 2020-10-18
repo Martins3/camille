@@ -1,5 +1,4 @@
-# KDIR = /lib/modules/`uname -r`/build
-KDIR = /home/shen/Core/hack-linux-kernel
+KDIR = /lib/modules/`uname -r`/build
 
 # https://stackoverflow.com/questions/28936199/why-is-pr-debug-of-the-linux-kernel-not-giving-any-output
 # -DDEBUG is essential, demsg will give nothing otherwise.
@@ -12,4 +11,3 @@ kbuild:
 
 clean:
 	make -C $(KDIR) M=`pwd` clean
-

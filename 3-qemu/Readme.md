@@ -1,5 +1,4 @@
-dnsmasq: TFTP directory /path/to/tftp/dir inaccessible: Permission denied
+# TODO
 
-systemctl status dnsmasq
-systemctl enable dnsmasq
-systemctl start dnsmasq
+add a example how to debug with qemu, a script and ....
+
