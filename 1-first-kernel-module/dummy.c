@@ -10,6 +10,9 @@ static int dummy_init(void) {
   void *write_addr;
   write_addr = (void *)0xffffffff812def00;
 
+  int a;
+
+
   pr_debug("write address: %p\n", (void *)0xffffffff812def00);
   pr_debug("write address: %px\n", (void *)0xffffffff812def00);
   return 0;

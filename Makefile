@@ -1,4 +1,4 @@
-SUBDIRS := $(wildcard */.)
+SUBDIRS := 1-first-kernel-module
 
 all: $(SUBDIRS)
 
