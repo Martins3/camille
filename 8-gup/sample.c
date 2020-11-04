@@ -21,6 +21,10 @@ static int sample_release(struct inode *inode, struct file *file) {
   return (0);
 }
 
+static void gup_vvar(void){
+
+}
+
 static ssize_t sample_write(struct file *file, const char __user *buf,
                             size_t count, loff_t *off) {
   int res;
@@ -34,8 +38,9 @@ static ssize_t sample_write(struct file *file, const char __user *buf,
     printk(KERN_INFO "Got mmaped.\n");
     myaddr = kmap(page);
     printk(KERN_INFO "%s\n", myaddr);
-    strcpy(myaddr, "Mohan");
+    strcpy(myaddr, "Write from kernel gup");
   }
+  gup_vvar();
   up_read(&current->mm->mmap_sem);
   return (0);
 }

@@ -8,16 +8,7 @@
 #include <unistd.h>  // sleep
 #include <assert.h>  // assert
 
-void sum(int a, int b){
-
-}
-// Type your code here, or load an example.
-int square(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8) {
-  sum(1, 2);
-  return a1;
-}
-
-int main(){
-  square(1, 2, 3, 4, 5, 6, 7, 8);
+int main(int argc, char *argv[]){
+  
   return 0;
 }
