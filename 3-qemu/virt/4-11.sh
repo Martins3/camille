@@ -1,7 +1,6 @@
 #!/bin/sh
 # https://github.com/cirosantilli/linux-cheat/blob/4c8ee243e0121f9bbd37f0ab85294d74fb6f3aec/ubuntu-18.04.1-desktop-amd64.sh
 
-
 # qemu-img create -f qcow2 ${img}  30G
 # qemu-system-x86_64 -hda ${img} -boot d -cdrom ${iso} -m 512 -enable-kvm
 
@@ -12,9 +11,11 @@ set -eux
 
 # Parameters.
 id=ubuntu
-disk_img="${id}.img.qcow2"
-disk_img_snapshot="${id}.snapshot.qcow2"
+abs_loc=/home/maritns3/core/module-example/3-qemu/virt
+disk_img="${abs_loc}/${id}.img.qcow2"
+disk_img_snapshot="${abs_loc}/${id}.snapshot.qcow2"
 iso=/home/maritns3/Documents/ubuntu-16.04.5-desktop-amd64.iso
+kernel=/home/maritns3/core/linux/arch/x86/boot/bzImage
 
 # Get image.
 if [ ! -f "$iso" ]; then
@@ -43,14 +44,6 @@ if [ ! -f "$disk_img_snapshot" ]; then
   ;
 fi
 
-if [ "$(pwd)" != "/home/maritns3/core/hack-linux-kernel-labs/3-qemu/virt" ];then
-  echo "current pwd is $(pwd)"
-  exit 0
-fi
-
-kernel=../core/linux/arch/x86/boot/bzImage
-# kernel=../core/tm-linux/arch/x86/boot/bzImage
-
 # Run the installed image.
 if [ $# -eq 1 ];then
   qemu-system-x86_64 \
@@ -61,11 +54,10 @@ if [ $# -eq 1 ];then
     -m 8G \
     -smp 8 \
     -soundhw hda \
-    -vga virtio \
-    "$@" \
-  ;
+    -vga virtio
 else
   qemu-system-x86_64 \
+    -bios /home/maritns3/core/x86-bare-metal-examples/uefi/ovmf.fd \
     -drive "file=${disk_img_snapshot},format=qcow2" \
     -enable-kvm \
     -cpu host \
@@ -73,7 +65,5 @@ else
     -m 8G \
     -smp 8 \
     -soundhw hda \
-    -vga virtio \
-    "$@" \
-  ;
+    -vga virtio
 fi
